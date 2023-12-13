@@ -1,14 +1,25 @@
 {
-  "name": "cimriauto",
+  "name": "e2e_tests",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "pw:cimri": "ENV=1 npx playwright test --project=chrome"
+  },
   "keywords": [],
-  "author": "",
+  "author": "Gokhan",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.40.1",
-    "@types/node": "^20.10.4"
+    "@faker-js/faker": "^7.6.0",
+    "@playwright/test": "^1.39.0",
+    "@types/node-localstorage": "^1.3.0",
+    "tsconfig-paths": "^4.2.0"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "csv-write-stream": "^2.0.0",
+    "moment": "^2.29.4",
+    "playwright-merge-html-reports": "^0.2.8",
+    "ts-node": "^10.9.1"
   }
 }
