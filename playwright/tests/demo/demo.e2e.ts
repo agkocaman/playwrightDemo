@@ -22,12 +22,15 @@ export const DemoWeb = {
                 await expect(page).toHaveTitle("Cimri - En son kaça olur?")
             }
         },
-        demoTestw: {
-            notes: "demo",
+        homePageLabel: {
+            notes: "cimri anasayfa label kontrol",
             tag: "",
+            only:true,
             run: async ({ page }) => {
-                await page.goto(`${configEnv.baseURL}`, { timeout: 10000 })
-                await expect(page).toHaveTitle("Cimri - En son kaça olur?")
+                await page.goto("")
+                await expect(demoPage.homePageLabelCimri).toHaveText("cimri")
+                await expect(demoPage.homePageLabelCimriMarkette).toHaveText("cimri markette")
+                await expect(demoPage.homePageLabelCimriFinans).toHaveText("cimri finans")
             }
         },
     }

@@ -19,10 +19,6 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'setup',
-      testMatch: /demo.spec\.ts/,
-    },
-    {
       name: "chrome",
       use: {
         ...devices["Desktop Chrome"],
@@ -32,7 +28,6 @@ export default defineConfig({
 
         },
       },
-      dependencies: ['setup'],
     },
     {
       name: "firefox",
