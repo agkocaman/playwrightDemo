@@ -25,7 +25,6 @@ export const DemoWeb = {
         homePageLabel: {
             notes: "cimri anasayfa label kontrol",
             tag: "",
-            only:true,
             run: async ({ page }) => {
                 await page.goto("")
                 await expect(demoPage.homePageLabelCimri).toHaveText("cimri")

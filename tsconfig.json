@@ -1,9 +1,11 @@
 {
   "ts-node": {
     "require": ["tsconfig-paths/register"],
+    "esm": true, // «———— enabling ESM for ts-node   
     "compilerOptions": {
       "module": "commonjs"
-    }
+    },
+
   },
   "compilerOptions": {
     "baseUrl": ".",

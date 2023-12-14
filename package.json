@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "pw:cimri": "ENV=1 npx playwright test --project=chrome",
-    "merge": "npx ts-node-esm playwright/helpers/mergeReports.ts"
+    "merge": "npx ts-node --esm playwright/helpers/mergeReports.ts"
   },
   "keywords": [],
   "author": "Gokhan",
@@ -21,7 +22,6 @@
     "csv-write-stream": "^2.0.0",
     "moment": "^2.29.4",
     "playwright-merge-html-reports": "^0.2.8",
-    "ts-node": "^10.9.1",
-    "minimist" : "^1.2.8"
+    "ts-node": "^10.9.1"
   }
 }
