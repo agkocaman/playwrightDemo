@@ -1,7 +1,7 @@
 
 import { expect } from "@playwright/test"
 import { DemoPage } from "../../pages/demo"
-import { configEnv, mainCategories } from "../../../config/config";
+import { bottomCategoriesBeyazEsya, configEnv, mainCategories, subCategoriesElectronic } from "../../../config/config";
 
 
 let demoPage : DemoPage
@@ -42,6 +42,79 @@ export const DemoWeb = {
                     await expect(response).toBeOK()
                     i++;
                 } while ( i < mainCategories.length)
+          }
+        },
+        subCategoryElectronicStatus: {
+            notes: "Cimri alt kategori status kontrol",
+            tag: "",
+            run: async ({ page }) => {
+                let i: number = 0;
+                do {
+                    const response = await page.request.get(`${configEnv.baseURL}`+`${subCategoriesElectronic[i]}`);
+                    await expect(response).toBeOK()
+                    await expect(demoPage.homePageLabelCimri).toHaveText("cimri")
+                    i++;
+                } while ( i < subCategoriesElectronic.length)
+          }
+        },
+        bottomCategoryElectronicStatus: {
+            notes: "Cimri dip kategori status kontrol",
+            tag: "",
+            run: async ({ page }) => {
+                let i: number = 0;
+                do {
+                    const response = await page.request.get(`${configEnv.baseURL}`+`${bottomCategoriesBeyazEsya[i]}`);
+                    await expect(response).toBeOK()
+                    i++;
+                } while ( i < bottomCategoriesBeyazEsya.length)
+          }
+        },
+        lowestPriceStatus: {
+            notes: "Dip kategoride en düşük fiyat listelenmesi",
+            tag: "",
+            run: async ({ page }) => {
+                let i: number = 0;
+                do {
+                    const response = await page.request.get(`${configEnv.baseURL}`+`${bottomCategoriesBeyazEsya[i]}`+"?sort=price%2Casc");
+                    await expect(response).toBeOK()
+                    i++;
+                } while ( i < bottomCategoriesBeyazEsya.length)
+          }
+        },
+        highestPriceStatus: {
+            notes: "Dip kategoride en yüksek fiyat listelenmesi",
+            tag: "",
+            run: async ({ page }) => {
+                let i: number = 0;
+                do {
+                    const response = await page.request.get(`${configEnv.baseURL}`+`${bottomCategoriesBeyazEsya[i]}`+"?sort=price%2Cdesc");
+                    await expect(response).toBeOK()
+                    i++;
+                } while ( i < bottomCategoriesBeyazEsya.length)
+          }
+        },
+        discountedPricesStatus: {
+            notes: "Dip kategoride fiyatı düşenler listelenmesi",
+            tag: "",
+            run: async ({ page }) => {
+                let i: number = 0;
+                do {
+                    const response = await page.request.get(`${configEnv.baseURL}`+`${bottomCategoriesBeyazEsya[i]}`+"?sort=discount%2Cdesc");
+                    await expect(response).toBeOK()
+                    i++;
+                } while ( i < bottomCategoriesBeyazEsya.length)
+          }
+        },
+        newProductsStatus: {
+            notes: "Dip kategoride en yeni ürünler listelenmesi",
+            tag: "",
+            run: async ({ page }) => {
+                let i: number = 0;
+                do {
+                    const response = await page.request.get(`${configEnv.baseURL}`+`${bottomCategoriesBeyazEsya[i]}`+"?sort=new%2Cdesc");
+                    await expect(response).toBeOK()
+                    i++;
+                } while ( i < bottomCategoriesBeyazEsya.length)
           }
         }
     }

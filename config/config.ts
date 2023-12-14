@@ -12,4 +12,9 @@ if (!env) {
       }),
 
   }
+
   export const mainCategories = ["elektronik","ev-yasam-ofis-kirtasiye","anne-bebek-oyuncak","saat-moda-taki","kitap-muzik-hobi","spor-outdoor","saglik-bakim-kozmetik","oto-bahce-yapi-market","pet"] 
+  export const subCategoriesElectronic = ["beyaz-esya-mutfak","cep-telefonu","bilgisayar-yazilimlar","isitma-sogutma","goruntu-sistemleri","kisisel-bakim-gerecleri","fotograf-kamera","oyun-konsollari","giyilebilir-teknoloji-cihazlari"] 
+  export const bottomCategoriesBeyazEsya = ["camasir-makineleri","buzdolaplari","camasir-kurutma-makineleri","bulasik-makineleri","derin-dondurucular","aspiratorler","endustriyel-mutfak-ekipmanlari","mini-midi-firinlar","ankastre-setler"] 
+
+ 
