@@ -1,0 +1,123 @@
+name: Cimri Playwright Tests
+on:
+    workflow_dispatch:
+jobs:
+  install:
+    timeout-minutes: 60
+    name: 🔨 Install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Cache Playwright binaries
+        uses: actions/cache@v3
+        id: cache-playwright
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps
+
+  test:
+    name: 🎬 Tests
+    needs: install
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1]
+        shardTotal: [1]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Cache Playwright
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('package-lock.json') }}
+
+      - name: Run Playwright tests
+        run: ENV=2 npx playwright test --project=chrome --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+      
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: report-${{ matrix.shardIndex }}
+          path: report/
+          retention-days: 3
+     
+  merge:
+    name: 📜 Merge Reports
+    if: ${{ always() }}
+    needs: [install, test]
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Cache Playwright
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('package-lock.json') }}
+
+      - uses: actions/download-artifact@v3
+        with:
+          path: report/
+
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: Remove Previous html-report directory if exists
+        run: rm -rf report/merged-report
+
+      - name: Run Report Merge
+        run: npm run merge
+
+      - name: Display structure of Merged
+        run: ls -R
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: html-report
+          path: merged-report/
+          retention-days: 3
+    
+
+   

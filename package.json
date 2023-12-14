@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "pw:cimri": "ENV=1 npx playwright test --project=chrome",
-    "merge": "node --loader ts-node/esm playwright/helpers/mergeReports.ts"
+    "pw:pilot": "ENV=2 npx playwright test --project=chrome",
+    "pw:pilot-ui": "ENV=2 npx playwright test --project=chrome --ui",
+    "merge": "npx ts-node-esm playwright/helpers/mergeReports.ts"
   },
   "keywords": [],
   "author": "Gokhan",
