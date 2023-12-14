@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pw:cimri": "ENV=1 npx playwright test --project=chrome"
+    "pw:cimri": "ENV=1 npx playwright test --project=chrome",
+    "merge": "npx ts-node-esm playwright/helpers/mergeReports.ts"
   },
   "keywords": [],
   "author": "Gokhan",
