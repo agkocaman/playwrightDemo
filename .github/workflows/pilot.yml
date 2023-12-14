@@ -1,4 +1,4 @@
-name: Cimri Playwright Tests
+name: Pilot Playwright Tests
 on:
     workflow_dispatch:
 jobs:
