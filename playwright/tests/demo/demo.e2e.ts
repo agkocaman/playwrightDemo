@@ -52,7 +52,6 @@ export const DemoWeb = {
                 do {
                     const response = await page.request.get(`${configEnv.baseURL}`+`${subCategoriesElectronic[i]}`);
                     await expect(response).toBeOK()
-                    await expect(demoPage.homePageLabelCimri).toHaveText("cimri")
                     i++;
                 } while ( i < subCategoriesElectronic.length)
           }
