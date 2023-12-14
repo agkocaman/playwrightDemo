@@ -37,7 +37,6 @@ export const DemoWeb = {
         mainCategoryStatus: {
             notes: "Cimri ana kategori status kontrol",
             tag: "",
-            only:true,
             run: async ({ page }) => {
                 let i: number = 0;
                 do {
