@@ -72,7 +72,7 @@ jobs:
           path: report/
           retention-days: 3
      
-  merge:
+ 
     name: 📜 Merge Reports
     if: ${{ always() }}
     needs: [install, test]
