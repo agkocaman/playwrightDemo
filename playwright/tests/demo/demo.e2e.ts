@@ -23,7 +23,7 @@ export const DemoWeb = {
             }
         },
         homePageLabel: {
-            notes: "cimri  ana sayfa label kontrol",
+            notes: "Cimri  ana sayfa label kontrol",
             tag: "",
             run: async ({ page }) => {
                 await page.goto("")
@@ -31,6 +31,37 @@ export const DemoWeb = {
                 await expect(demoPage.homePageLabelCimriMarkette).toHaveText("cimri markette")
                 await expect(demoPage.homePageLabelCimriFinans).toHaveText("cimri finans")
           },
+        },
+        productSearch: {
+            notes: "Ürün arama",
+            tag: "",
+            run: async ({ page }) => {
+                await page.goto("")
+                await demoPage.iconSearch.click()
+                await expect(demoPage.searchBoxContainer).toBeVisible()
+                await demoPage.searchInput.fill("iphone 15")
+                await page.keyboard.press('Enter')
+                const response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(page).toHaveURL("arama?q=iphone%2015")
+          },
+        },
+        productSearchDetail:{
+            notes: "Ürün arama sonrası detay sayfasına gitme",
+            tag: "",
+            run: async ({ page }) => {
+                await page.goto("")
+                await demoPage.iconSearch.click()
+                await expect(demoPage.searchBoxContainer).toBeVisible()
+                await demoPage.searchInput.fill("iphone 15")
+                await page.keyboard.press('Enter')
+                await expect(page).toHaveURL("arama?q=iphone%2015")
+                await expect(demoPage.searchDetailCardContentFirst).toBeVisible()
+                await demoPage.searchDetailCardContentFirst.click()
+                const response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(demoPage.detailProductCardTitle).toBeVisible()
+            }
         },
         mainCategoryStatus: {
             notes: "Cimri ana kategori status kontrol",
@@ -69,7 +100,7 @@ export const DemoWeb = {
           }
         },
         lowestPriceStatus: {
-            notes: "Dip kategoride en düşük fiyat listelenmesi",
+            notes: "Dip kategoride en düşük fiyat listelenmesi status kontrol",
             tag: "",
             run: async ({ page }) => {
                 let i: number = 0;
@@ -81,7 +112,7 @@ export const DemoWeb = {
           }
         },
         highestPriceStatus: {
-            notes: "Dip kategoride en yüksek fiyat listelenmesi",
+            notes: "Dip kategoride en yüksek fiyat listelenmesi status kontrol",
             tag: "",
             run: async ({ page }) => {
                 let i: number = 0;
@@ -93,7 +124,7 @@ export const DemoWeb = {
           }
         },
         discountedPricesStatus: {
-            notes: "Dip kategoride fiyatı düşenler listelenmesi",
+            notes: "Dip kategoride fiyatı düşenler listelenmesi status kontrol",
             tag: "",
             run: async ({ page }) => {
                 let i: number = 0;
@@ -105,7 +136,7 @@ export const DemoWeb = {
           }
         },
         newProductsStatus: {
-            notes: "Dip kategoride en yeni ürünler listelenmesi",
+            notes: "Dip kategoride en yeni ürünler listelenmesi status kontrol",
             tag: "",
             run: async ({ page }) => {
                 let i: number = 0;
@@ -115,7 +146,8 @@ export const DemoWeb = {
                     i++;
                 } while ( i < bottomCategoriesBeyazEsya.length)
           }
-        }
+        },
+
     }
 
 }
