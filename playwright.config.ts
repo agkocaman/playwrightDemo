@@ -8,7 +8,9 @@ export default defineConfig({
   expect: {
     timeout: 40 * 1000
   },
-  reporter: [['html', { outputFolder: 'report' }]],
+  reporter: [
+    ['html', { outputFolder: 'report' }],
+    ['allure-playwright']],
   use: {
     headless: true,
     baseURL: configEnv.baseURL,
@@ -48,5 +50,7 @@ export default defineConfig({
         },
       },
     },
+    
   ],
+  
 });
