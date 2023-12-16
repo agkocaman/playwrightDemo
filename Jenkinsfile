@@ -4,7 +4,15 @@ pipeline {
       image 'mcr.microsoft.com/playwright:v1.40.0-jammy'
     } 
   }
+  stage('Initialize'){
+        def dockerHome = tool 'default-docker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
   stages {
+    stage('Initialize'){
+        def dockerHome = tool 'default-docker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
     stage('install playwright') {
       steps {
         sh '''
