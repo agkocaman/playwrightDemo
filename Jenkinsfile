@@ -5,10 +5,6 @@ pipeline {
     } 
   }
   stages {
-    stage('Initialize'){
-        def dockerHome = tool 'default-docker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
-    }
     stage('install playwright') {
       steps {
         sh '''
