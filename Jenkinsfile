@@ -21,7 +21,8 @@ pipeline {
     stage('test') {
       steps {
         sh '''
-          npx playwright test --project=chrome --reporter=line,allure-playwright
+          npx playwright test --list
+          npx playwright test
         '''
       }
       post {
