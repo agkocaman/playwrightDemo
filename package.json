@@ -7,7 +7,9 @@
     "pw:cimri": "ENV=1 npx playwright test --project=chrome",
     "pw:pilot": "ENV=2 npx playwright test --project=chrome --reporter=line,allure-playwright",
     "pw:pilot-ui": "ENV=2 npx playwright test --project=chrome --ui",
-    "merge": "npx ts-node-esm playwright/helpers/mergeReports.ts"
+    "pw:pilot-debug": "ENV=2 npx playwright test --project=chrome --debug",
+    "merge": "npx ts-node-esm playwright/helpers/mergeReports.ts",
+    "report":"allure generate allure-results -o allure-report --clean"
   },
   "keywords": [],
   "author": "Gokhan",

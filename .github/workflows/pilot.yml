@@ -64,6 +64,7 @@ jobs:
 
       - name: Run Playwright tests
         run: ENV=2 npx playwright test --project=chrome --reporter=line,allure-playwright --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        
       
       - uses: actions/upload-artifact@v3
         if: always()
