@@ -16,7 +16,7 @@ export const DemoWeb = {
     E2E: {
         hemoPageTitle: {
             notes: "Ana sayfa title kontrol",
-            tag: "",
+            tag: "@web",
             run: async ({ page }) => {
                 await page.goto(`${configEnv.baseURL}`, { timeout: 10000 })
                 await expect(page).toHaveTitle("Cimri - En son kaça olur?")
@@ -24,7 +24,7 @@ export const DemoWeb = {
         },
         homePageLabel: {
             notes: "Cimri  ana sayfa label kontrol",
-            tag: "",
+            tag: "@web",
             run: async ({ page }) => {
                 await page.goto("")
                 await expect(demoPage.homePageLabelCimri).toHaveText("cimri")
@@ -34,7 +34,7 @@ export const DemoWeb = {
         },
         productSearch: {
             notes: "Ürün arama",
-            tag: "",
+            tag: "@mobile, @web",
             run: async ({ page }) => {
                 await page.goto("")
                 await demoPage.iconSearch.click()
@@ -48,7 +48,7 @@ export const DemoWeb = {
         },
         productSearchDetail:{
             notes: "Ürün arama sonrası detay sayfasına gitme",
-            tag: "",
+            tag: " @web",
             run: async ({ page }) => {
                 await page.goto("")
                 await demoPage.iconSearch.click()
@@ -65,7 +65,7 @@ export const DemoWeb = {
         },
         mainCategoryStatus: {
             notes: "Cimri ana kategori status kontrol",
-            tag: "",
+            tag: "@mobile, @web",
             run: async ({ page }) => {
                 let i: number = 0;
                 do {
@@ -77,7 +77,7 @@ export const DemoWeb = {
         },
         subCategoryElectronicStatus: {
             notes: "Cimri alt kategori status kontrol",
-            tag: "",
+            tag: "@mobile, @web",
             run: async ({ page }) => {
                 let i: number = 0;
                 do {
@@ -89,7 +89,7 @@ export const DemoWeb = {
         },
         bottomCategoryElectronicStatus: {
             notes: "Cimri dip kategori status kontrol",
-            tag: "",
+            tag: "@mobile, @web",
             run: async ({ page }) => {
                 let i: number = 0;
                 do {
@@ -101,7 +101,7 @@ export const DemoWeb = {
         },
         lowestPriceStatus: {
             notes: "Dip kategoride en düşük fiyat listelenmesi status kontrol",
-            tag: "",
+            tag: "@mobile, @web",
             run: async ({ page }) => {
                 let i: number = 0;
                 do {
@@ -113,7 +113,7 @@ export const DemoWeb = {
         },
         highestPriceStatus: {
             notes: "Dip kategoride en yüksek fiyat listelenmesi status kontrol",
-            tag: "",
+            tag: "@mobile, @web",
             run: async ({ page }) => {
                 let i: number = 0;
                 do {
@@ -125,7 +125,7 @@ export const DemoWeb = {
         },
         discountedPricesStatus: {
             notes: "Dip kategoride fiyatı düşenler listelenmesi status kontrol",
-            tag: "",
+            tag: "@mobile, @web",
             run: async ({ page }) => {
                 let i: number = 0;
                 do {
@@ -137,7 +137,7 @@ export const DemoWeb = {
         },
         newProductsStatus: {
             notes: "Dip kategoride en yeni ürünler listelenmesi status kontrol",
-            tag: "",
+            tag: "@mobile, @web",
             run: async ({ page }) => {
                 let i: number = 0;
                 do {

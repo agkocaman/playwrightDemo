@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "pw:cimri": "ENV=1 npx playwright test --project=chrome",
-    "pw:pilot": "ENV=2 npx playwright test --project=chrome --reporter=line,allure-playwright",
+    "pw:pilot": "ENV=2 npx playwright test --project=chrome --grep @web --reporter=line,allure-playwright",
     "pw:pilot-ui": "ENV=2 npx playwright test --project=chrome --ui",
     "pw:pilot-debug": "ENV=2 npx playwright test --project=chrome --debug",
+    "pw:pilotmobile": "ENV=2 npx playwright test --project=mobile --grep @mobile --reporter=line,allure-playwright",
     "merge": "npx ts-node-esm playwright/helpers/mergeReports.ts",
     "report":"allure generate allure-results -o allure-report --clean"
   },

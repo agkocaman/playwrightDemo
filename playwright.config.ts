@@ -4,6 +4,7 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   retries: 2,
   workers: process.env.CI ? 2 : undefined,
+  fullyParallel : true,
   timeout: 210 * 1000,
   expect: {
     timeout: 40 * 1000
@@ -50,6 +51,16 @@ export default defineConfig({
         },
       },
     },
+    {
+      name: 'mobile',
+      use: {
+        ...devices["iPhone 14 Pro Max"],
+        launchOptions: {
+          args: ["--disable-web-security"],
+        },
+
+      },
+    }
     
   ],
   
