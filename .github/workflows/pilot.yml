@@ -116,7 +116,25 @@ jobs:
       - uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: html-report
-          path: merged-report/
+          name: all-blob-reports
+          path: blob-report
           retention-days: 3
-  
+  merge_reports:
+    name: "Merge reports"
+    needs: [test]
+    if: always()
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+    - run: npm ci
+      env:
+        PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+    - run: npm run build
+    - name: Download blob report artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: all-blob-reports
+        path: all-blob-reports
+    - run: npx playwright merge-reports --reporter markdown,html ./all-blob-reports
+   
