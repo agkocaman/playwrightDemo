@@ -48,7 +48,7 @@ export const DemoWeb = {
         },
         productSearchDetail:{
             notes: "Ürün arama sonrası detay sayfasına gitme",
-            tag: " @web",
+            tag: "@web",
             run: async ({ page }) => {
                 await page.goto("")
                 await demoPage.iconSearch.click()
@@ -147,7 +147,50 @@ export const DemoWeb = {
                 } while ( i < bottomCategoriesBeyazEsya.length)
           }
         },
-
+        priceDropsStatus: {
+            notes: "Fiyatı düşünler sayfasında, en düşük, yüksek fiyat ve fiyayı düşen , en yeni ürünler status ve title kontrol",
+            tag: "@web",
+            run: async ({ page }) => {
+                await page.goto("")
+                await demoPage.saleDiscountIcon.click()
+                let response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(page).toHaveTitle("İndirimli Ürünler ve Günün İndirimleri")
+                await page.goto("indirimli-urunler?sort=price%2Casc")
+                response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(page).toHaveTitle("İndirimli Ürünler ve Günün İndirimleri")
+                await page.goto("indirimli-urunler?sort=price%2Cdesc")
+                response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(page).toHaveTitle("İndirimli Ürünler ve Günün İndirimleri")
+                await page.goto("indirimli-urunler?sort=discount%2Cdesc")
+                response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(page).toHaveTitle("İndirimli Ürünler ve Günün İndirimleri")
+                await page.goto("indirimli-urunler?sort=new%2Cdesc")
+                response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(page).toHaveTitle("İndirimli Ürünler ve Günün İndirimleri")
+          }
+        },
+        brochuresStatus: {
+            notes: "Broşürler sayfası ve a101 sayfasında status ve title kontrolü",
+            tag: "@web",
+            run: async ({ page }) => {
+                await page.goto("")
+                await demoPage.brochureIcon.click()
+                let response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(page).toHaveTitle("Güncel Broşürler ve İndirim Katalogları")
+                await demoPage.a101brochureIcon.click()
+                response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(page).toHaveTitle("A101 Aktüel Kataloğu ve A101 İndirim Broşürü")
+                await demoPage.a101brochureFirst.click()
+                response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+          }
+        },
     }
-
 }

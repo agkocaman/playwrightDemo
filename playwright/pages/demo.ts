@@ -9,6 +9,11 @@ export class DemoPage {
     searchInput : Locator;
     searchDetailCardContentFirst : Locator;
     detailProductCardTitle : Locator;
+    saleDiscountIcon : Locator;
+    brochureIcon :Locator;
+    a101brochureIcon : Locator;
+    a101brochureFirst : Locator;
+
 
     constructor(page: Page) {
         this.page = page
@@ -20,5 +25,9 @@ export class DemoPage {
         this.searchInput = page.locator("#search-input")
         this.searchDetailCardContentFirst = page.locator("div[data-component='LISTINGMAIN']:nth-of-type(1)")
         this.detailProductCardTitle = page.locator("//h1[contains(@class,'ProductCard_title')]")
+        this.saleDiscountIcon = page.locator("button>.cimri-icon-sale-discount-promotion")
+        this.brochureIcon = page.locator("button>.cimri-icon-brochures")
+        this.a101brochureIcon = page.locator("a[title='A101']")
+        this.a101brochureFirst = page.locator("//div[1]/a[contains(@href, 'a101-com-tr?id')]")
     }
 }
