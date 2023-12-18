@@ -1,7 +1,8 @@
 
 import { expect } from "@playwright/test"
 import { DemoPage } from "../../pages/demo"
-import { bottomCategoriesBeyazEsya, configEnv, mainCategories, subCategoriesElectronic } from "../../../config/config";
+import { bottomCategoriesBeyazEsya, configEnv, emailAndPass, mainCategories, subCategoriesElectronic } from "../../../config/config";
+import { createEvalAwarePartialHost } from "ts-node/dist/repl";
 
 
 let demoPage : DemoPage
@@ -190,6 +191,28 @@ export const DemoWeb = {
                 await demoPage.a101brochureFirst.click()
                 response = await page.request.get(page.url());
                 await expect(response).toBeOK()
+          }
+        },
+        loginUser: {
+            notes: "Kullanıcı giriş yaptıktan sonra status ve title kontrolleri",
+            tag: "@web",
+            run: async ({ page }) => {
+                await page.goto("")
+                await demoPage.loginIcon.hover()
+                await expect(demoPage.accountModalMenuListContainer).toBeVisible()
+                await expect(demoPage.signInLnk).toBeVisible()
+                await demoPage.signInLnk.click()
+                let response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(page).toHaveTitle("Üye Girişi")
+                await demoPage.emailInput.fill(emailAndPass.email)
+                await demoPage.passwordInput.fill(emailAndPass.pass)
+                await expect(demoPage.signInBtn).toBeVisible()
+                await demoPage.signInBtn.click()
+                await expect(page).toHaveURL(/.giris-basarili/)
+                response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(page).toHaveTitle("Giriş Başarılı")
           }
         },
     }
