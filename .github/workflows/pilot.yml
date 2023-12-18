@@ -63,7 +63,7 @@ jobs:
           key: playwright-${{ hashFiles('package-lock.json') }}
 
       - name: Run Playwright tests
-        run: ENV=2 npx playwright test --project=chrome --reporter=line,allure-playwright --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        run: ENV=2 npx playwright test --project=chrome --grep-invert --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         
       
       - uses: actions/upload-artifact@v3
@@ -73,68 +73,4 @@ jobs:
           path: report/
           retention-days: 3
      
-  merge:
-    name: 📜 Merge Reports
-    if: ${{ always() }}
-    needs: [install, test]
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Cache Playwright
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/ms-playwright
-          key: playwright-${{ hashFiles('package-lock.json') }}
-
-      - uses: actions/download-artifact@v3
-        with:
-          path: report/
-
-      - name: Display structure of downloaded files
-        run: ls -R
-
-      - name: Remove Previous html-report directory if exists
-        run: rm -rf report/merged-report
-
-      - name: Run Report Merge
-        run: npm run merge
-
-      - name: Display structure of Merged
-        run: ls -R
-
-      - uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: all-blob-reports
-          path: blob-report
-          retention-days: 3
-  merge_reports:
-    name: "Merge reports"
-    needs: [test]
-    if: always()
-    runs-on: ubuntu-20.04
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-    - run: npm ci
-      env:
-        PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-    - run: npm run build
-    - name: Download blob report artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: all-blob-reports
-        path: all-blob-reports
-    - run: npx playwright merge-reports --reporter markdown,html ./all-blob-reports
-   
+  
