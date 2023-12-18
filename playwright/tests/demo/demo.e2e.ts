@@ -1,5 +1,5 @@
 
-import { expect } from "@playwright/test"
+import { expect, test } from "@playwright/test"
 import { DemoPage } from "../../pages/demo"
 import { bottomCategoriesBeyazEsya, configEnv, emailAndPass, mainCategories, subCategoriesElectronic } from "../../../config/config";
 import { createEvalAwarePartialHost } from "ts-node/dist/repl";
@@ -19,7 +19,7 @@ export const DemoWeb = {
             notes: "Ana sayfa title kontrol",
             tag: "@web",
             run: async ({ page }) => {
-                await page.goto(`${configEnv.baseURL}`, { timeout: 10000 })
+                await page.goto(`${configEnv.baseURL}`)
                 await expect(page).toHaveTitle("Cimri - En son kaça olur?")
             }
         },
@@ -209,7 +209,7 @@ export const DemoWeb = {
                 await demoPage.passwordInput.fill(emailAndPass.pass)
                 await expect(demoPage.signInBtn).toBeVisible()
                 await demoPage.signInBtn.click()
-                await expect(page).toHaveURL(/.giris-basarili/)
+                await expect(page).toHaveURL(/giris-basarili/)
                 response = await page.request.get(page.url());
                 await expect(response).toBeOK()
                 await expect(page).toHaveTitle("Giriş Başarılı")
