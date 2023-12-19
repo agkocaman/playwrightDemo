@@ -193,9 +193,29 @@ export const DemoWeb = {
                 await expect(response).toBeOK()
           }
         },
+        brochuresMobileStatus: {
+            notes: "Mobilde Broşürler sayfası ve a101 sayfasında status ve title kontrolü",
+            tag: "@mobile",
+            run: async ({ page }) => {
+                await page.goto("")
+                await expect(demoPage.brochureMobileSeeAll).toBeVisible()
+                await demoPage.brochureMobileSeeAll.click()
+                let response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(page).toHaveTitle("Güncel Broşürler ve İndirim Katalogları")
+                await demoPage.a101brochureIcon.click()
+                response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(page).toHaveTitle("A101 Aktüel Kataloğu ve A101 İndirim Broşürü")
+                await demoPage.a101brochureFirstMobile.click()
+                response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+          }
+        },
         loginUser: {
             notes: "Kullanıcı giriş yaptıktan sonra status ve title kontrolleri",
             tag: "@web",
+            skip:true,
             run: async ({ page }) => {
                 await page.goto("")
                 await demoPage.loginIcon.hover()
@@ -215,5 +235,29 @@ export const DemoWeb = {
                 await expect(page).toHaveTitle("Giriş Başarılı")
           }
         },
+        loginUserMobile: {
+            notes: "Kullanıcı giriş yaptıktan sonra status ve title kontrolleri",
+            tag: "@mobile",
+            skip:true,
+            run: async ({ page }) => {
+                await page.goto("")
+                await expect(demoPage.loginIcon).toBeVisible()
+                await demoPage.loginIcon.click()
+                await expect(demoPage.accountModalMobile).toBeVisible()
+                await expect(demoPage.loginBtnMobile).toBeVisible()
+                await demoPage.loginBtnMobile.click()
+                let response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(page).toHaveTitle("Üye Girişi")
+                await demoPage.emailInput.fill(emailAndPass.email)
+                await demoPage.passwordInput.fill(emailAndPass.pass)
+                await expect(demoPage.signInBtn).toBeVisible()
+                await demoPage.signInBtn.click()
+                await expect(page).toHaveURL(/giris-basarili/)
+                response = await page.request.get(page.url());
+                await expect(response).toBeOK()
+                await expect(page).toHaveTitle("Giriş Başarılı")
+          }
+        },       
     }
 }

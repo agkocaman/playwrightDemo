@@ -13,12 +13,16 @@ export class DemoPage {
     brochureIcon :Locator;
     a101brochureIcon : Locator;
     a101brochureFirst : Locator;
+    a101brochureFirstMobile : Locator;
     loginIcon : Locator;
     accountModalMenuListContainer : Locator;
     signInLnk : Locator; 
     emailInput : Locator;
     passwordInput : Locator;
     signInBtn : Locator;
+    accountModalMobile : Locator;
+    loginBtnMobile : Locator;
+    brochureMobileSeeAll : Locator;
 
     constructor(page: Page) {
         this.page = page
@@ -34,11 +38,18 @@ export class DemoPage {
         this.brochureIcon = page.locator("button>.cimri-icon-brochures")
         this.a101brochureIcon = page.locator("a[title='A101']")
         this.a101brochureFirst = page.locator("//div[1]/a[contains(@href, 'a101-com-tr?id')]")
+        this.a101brochureFirstMobile = page.locator("//a[contains(@href, 'a101-com-tr?id')][1]")
         this.loginIcon = page.locator("button>.cimri-icon-avatar-login")
         this.accountModalMenuListContainer = page.locator("//div[contains(@class, 'AccountModal_menuListItemContainer')]")
         this.signInLnk = page.locator("//a[contains(@class, 'MenuCategoryItem_menuCategoryItemContainer')][1]")
         this.emailInput = page.locator("//div[1]/div/form//input[@id='email']")
         this.passwordInput = page.locator("#password")
         this.signInBtn = page.locator("//button/span[.='Giriş Yap']")
+        this.accountModalMobile = page.locator("//div[contains(@class, 'AccountModal_menu')]/div[contains(@class, 'Modal_mobile')]")
+        this.loginBtnMobile = page.locator("a>.cimri-icon-avatar-login")
+        this.brochureMobileSeeAll = page.locator("a[href*='brosur']>span")
+        
+
+        
     }
 }

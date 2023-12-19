@@ -10,6 +10,7 @@
     "pw:pilot-ui": "ENV=2 npx playwright test --project=chrome --ui",
     "pw:pilot-debug": "ENV=2 npx playwright test --project=chrome --debug",
     "pw:pilotmobile": "ENV=2 npx playwright test --project=mobile --grep @mobile --reporter=line,allure-playwright",
+    "pw:pilotmobile-ui": "ENV=2 npx playwright test --project=mobile --grep @mobile --ui",
     "merge": "npx ts-node-esm playwright/helpers/mergeReports.ts",
     "report":"allure generate allure-results -o allure-report --clean"
   },
