@@ -1,10 +1,5 @@
 pipeline {
     agent none
-
-    options {
-        ansiColor('vga')
-    }
-    
     stages {
         stage('Running') {
             agent { 
