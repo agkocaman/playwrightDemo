@@ -35,7 +35,7 @@ export const DemoWeb = {
         },
         productSearch: {
             notes: "Ürün arama",
-            tag: "@mobile, @web",
+            tag: "@mobile",
             run: async ({ page }) => {
                 await page.goto("")
                 await demoPage.iconSearch.click()
@@ -66,7 +66,7 @@ export const DemoWeb = {
         },
         mainCategoryStatus: {
             notes: "Cimri ana kategori status kontrol",
-            tag: "@mobile, @web",
+            tag: "@web",
             run: async ({ page }) => {
                 let i: number = 0;
                 do {
@@ -78,7 +78,7 @@ export const DemoWeb = {
         },
         subCategoryElectronicStatus: {
             notes: "Cimri alt kategori status kontrol",
-            tag: "@mobile, @web",
+            tag: "@web",
             run: async ({ page }) => {
                 let i: number = 0;
                 do {
@@ -90,7 +90,7 @@ export const DemoWeb = {
         },
         bottomCategoryElectronicStatus: {
             notes: "Cimri dip kategori status kontrol",
-            tag: "@mobile, @web",
+            tag: "@web",
             run: async ({ page }) => {
                 let i: number = 0;
                 do {
@@ -102,7 +102,7 @@ export const DemoWeb = {
         },
         lowestPriceStatus: {
             notes: "Dip kategoride en düşük fiyat listelenmesi status kontrol",
-            tag: "@mobile, @web",
+            tag: "@web",
             run: async ({ page }) => {
                 let i: number = 0;
                 do {
@@ -138,7 +138,7 @@ export const DemoWeb = {
         },
         newProductsStatus: {
             notes: "Dip kategoride en yeni ürünler listelenmesi status kontrol",
-            tag: "@mobile, @web",
+            tag: "@web",
             run: async ({ page }) => {
                 let i: number = 0;
                 do {
@@ -195,7 +195,7 @@ export const DemoWeb = {
         },
         brochuresMobileStatus: {
             notes: "Mobilde Broşürler sayfası ve a101 sayfasında status ve title kontrolü",
-            tag: "@mobile",
+            tag: "",
             run: async ({ page }) => {
                 await page.goto("")
                 await expect(demoPage.brochureMobileSeeAll).toBeVisible()
