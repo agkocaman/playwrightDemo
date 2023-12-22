@@ -7,15 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                script {
-                    // Kodunuzu GitHub'dan veya başka bir kaynaktan çekmek için checkout komutunu kullanın.
-                    checkout scm
-                }
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 script {
@@ -32,12 +23,6 @@ pipeline {
                     sh 'npx playwright test'
                 }
             }
-        }
-    }
-
-    post {
-        always {
-            // Temizlik adımları, gerekirse.
         }
     }
 }
