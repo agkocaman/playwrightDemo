@@ -16,23 +16,15 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                sh 'baseURL=https://pilot.cimri.com npx playwright test --project=mobile --grep @mobile --reporter=line,allure-playwright'
+                sh 'baseURL=https://pilot.cimri.com npx playwright test --project=mobile --grep @mobile --reporter=junit'
                 }
             }
         }
     }
    post {
         always {
-      publishHTML (target : [
-        allowMissing: false,
-        alwaysLinkToLastBuild: true,
-        keepAll: true,
-        reportDir: 'out/playwright-report',
-        reportFiles: 'index.html',
-        reportName: 'Playwright Report',
-        reportTitles: 'Playwright Report'
-        ]
-      )
+            set PLAYWRIGHT_JUNIT_OUTPUT_NAME=results.xml
+            npx playwright test --reporter=junit
         }
     }
 }
