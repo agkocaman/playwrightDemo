@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools{
        nodejs '21.5.0'
+       allure 'Allure_Home'
     }
 
     stages {
