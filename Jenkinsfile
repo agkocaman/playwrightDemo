@@ -1,36 +1,23 @@
 pipeline {
-  agent { 
-    docker { 
-      image 'mcr.microsoft.com/playwright:v1.40.0-jammy'
-    } 
-  }
-  stages {
-    stage('install playwright') {
-      steps {
-        sh '''
-          npm i -D @playwright/test
-          npx playwright install
-        '''
-      }
+    agent none
+
+    options {
+        ansiColor('vga')
     }
-    stage('help') {
-      steps {
-        sh 'npx playwright test --help'
-      }
-    }
-    stage('test') {
-      steps {
-        sh '''
-          npx playwright test --list
-          npx playwright test    
-        '''
-      }
-      post {
-        success {
-          archiveArtifacts(artifacts: 'homepage-*.png', followSymlinks: false)
-          sh 'rm -rf *.png'
+    
+    stages {
+        stage('Running') {
+            agent { 
+                docker { 
+                    image 'mcr.microsoft.com/playwright:v1.40.0-jammy' 
+                    label "slave-arm64"
+                }
+            }
+            steps {       
+                sh 'npm install'
+                sh 'npx playwright install'
+                sh 'baseURL=http://pilot.cimri.com npx playwright test --project=web --grep @web --reporter=line,allure-playwright'
+            }
         }
-      }
     }
-  }
 }
