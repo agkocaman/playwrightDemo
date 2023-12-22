@@ -20,7 +20,6 @@ pipeline {
                 script {
                    
                 sh 'baseURL=https://pilot.cimri.com npx playwright test --project=mobile --grep @mobile --reporter=line,allure-playwright'
-                sh 'npx playwright show-report report'
                 }
             }
         }
