@@ -23,11 +23,7 @@ pipeline {
     }
    post {
         always {
-<<<<<<< HEAD
             junit 'results.xml'
-=======
-            set PLAYWRIGHT_JUNIT_OUTPUT_NAME=results.xml
->>>>>>> b14dc3bf62159141e69bfc1d704f6ce3d9fd72bc
         }
     }
 }
