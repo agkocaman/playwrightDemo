@@ -1,6 +1,4 @@
-pipeline {
-
-    stages {
+ stages {
         stage('Install Dependencies') {
             steps {
                 script {
@@ -19,4 +17,3 @@ pipeline {
             }
         }
     }
-}
