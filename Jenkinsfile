@@ -16,7 +16,9 @@ pipeline {
             steps {
                 script {
                     // Playwright testlerini çalıştırın
-                    sh 'npx playwright test'
+                sh 'npm install'
+                sh 'npx playwright install'
+                sh 'baseURL=http://pilot.cimri.com npx playwright test --project=mobile --grep @mobile --reporter=line,allure-playwright'
                 }
             }
         }
