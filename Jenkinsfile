@@ -1,21 +1,24 @@
 pipeline {
-    agent any
-    tools{
-       nodejs '21.5.0'
-       allure 'Allure_Home'
+  agent { 
+    docker { 
+      image 'mcr.microsoft.com/playwright:v1.17.2-focal'
+    } 
+  }
+  stages {
+    stage('install playwright') {
+      steps {
+        sh '''
+          npm i -D @playwright/test
+          npx playwright install
+        '''
+      }
     }
-
-    stages {
-        stage('Run Playwright Tests') {
-            steps {
-                script {
-                    // Playwright testlerini çalıştırın
-                sh 'npm install'
-                sh 'npx playwright install'
-                sh 'baseURL=https://pilot.cimri.com npx playwright test --project=mobile --grep @mobile --reporter=line,allure-playwright'
-                sh 'npx playwright show-report report'
-                }
-            }
-        }
+    stage('test') {
+      steps {
+        sh '''
+         baseURL=https://pilot.cimri.com npx playwright test --project=mobile --grep @mobile
+        '''
+      }
     }
+  }
 }
