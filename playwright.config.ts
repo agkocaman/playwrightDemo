@@ -11,7 +11,8 @@ export default defineConfig({
   },
   reporter: [
     ['html', { outputFolder: 'report' }],
-    ['allure-playwright']],
+    ['allure-playwright'],
+    ['junit', { outputFile: 'results.xml' }]],
   use: {
     headless: true,
     baseURL: configEnv.baseURL,
