@@ -10,15 +10,12 @@ pipeline {
                 script {
                 sh 'npm i -D @playwright/test'
                 sh 'npx playwright install'
-                sh 'baseURL=https://pilot.cimri.com npx playwright test --project=mobile --grep @mobile --reporter=line,allure-playwright'
-                sh 'npx playwright show-report report'
                 }
             }
         }
         stage('Run Tests') {
             steps {
                 script {
-                   
                 sh 'baseURL=https://pilot.cimri.com npx playwright test --project=mobile --grep @mobile --reporter=line,allure-playwright'
                 }
             }
