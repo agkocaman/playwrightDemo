@@ -3,6 +3,7 @@ pipeline {
         docker {
             // Playwright testlerini çalıştırabilmek için bir Node.js imajını kullanın.
             image 'playwright-test:latest'
+            args '--network host'
         }
     }
 
