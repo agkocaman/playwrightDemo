@@ -23,14 +23,10 @@ export default defineConfig({
   },
   projects: [
     {
-      name: "chrome",
+      name: "web",
       use: {
         ...devices["Desktop Chrome"],
-        viewport: { width: 1920, height: 1080 },
-        launchOptions: {
-          args: ["--disable-web-security", "--no-sandbox"],
-
-        },
+        viewport: { width: 1920, height: 1080 }
       },
     },
     {

@@ -16,7 +16,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                sh 'baseURL=https://pilot.cimri.com npx playwright test --project=mobile --grep @mobile'
+                sh 'baseURL=https://pilot.cimri.com npx playwright test --project=web --grep @web'
                 }
             }
         }
