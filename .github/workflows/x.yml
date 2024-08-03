@@ -1,4 +1,4 @@
-name: Cimri Playwright Tests
+name: X Playwright Tests
 on:
     workflow_dispatch:
 jobs:
