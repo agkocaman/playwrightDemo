@@ -1,4 +1,3 @@
-
 import { expect, test } from "@playwright/test"
 import { DemoPage } from "../../pages/demo"
 import { bottomCategoriesBeyazEsya, configEnv, emailAndPass, mainCategories, subCategoriesElectronic } from "../../../config/config";
@@ -16,47 +15,47 @@ export const DemoWeb = {
 
     E2E: {
         hemoPageTitle: {
-            notes: "Ana sayfa title kontrol",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@web",
             run: async ({ page }) => {
                 await page.goto(`${configEnv.baseURL}`)
-                await expect(page).toHaveTitle("Cimri - En son kaça olur?")
+                await expect(page).toHaveTitle("Lorem ipsum dolor sit amet")
             }
         },
         homePageLabel: {
-            notes: "Cimri  ana sayfa label kontrol",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@web",
             run: async ({ page }) => {
                 await page.goto("")
-                await expect(demoPage.homePageLabelCimri).toHaveText("cimri")
-                await expect(demoPage.homePageLabelCimriMarkette).toHaveText("cimri markette")
-                await expect(demoPage.homePageLabelCimriFinans).toHaveText("cimri finans")
+                await expect(demoPage.homePageLabelx).toHaveText("Lorem ipsum")
+                await expect(demoPage.homePageLabelxMarkette).toHaveText("Lorem ipsum")
+                await expect(demoPage.homePageLabelxFinans).toHaveText("Lorem ipsum")
           },
         },
         productSearch: {
-            notes: "Ürün arama",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@mobile",
             run: async ({ page }) => {
                 await page.goto("")
                 await demoPage.iconSearch.click()
                 await expect(demoPage.searchBoxContainer).toBeVisible()
-                await demoPage.searchInput.fill("iphone 15")
+                await demoPage.searchInput.fill("Lorem ipsum")
                 await page.keyboard.press('Enter')
                 const response = await page.request.get(page.url());
                 await expect(response).toBeOK()
-                await expect(page).toHaveURL("arama?q=iphone%2015")
+                await expect(page).toHaveURL("arama?q=Lorem%20ipsum")
           },
         },
         productSearchDetail:{
-            notes: "Ürün arama sonrası detay sayfasına gitme",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@web",
             run: async ({ page }) => {
                 await page.goto("")
                 await demoPage.iconSearch.click()
                 await expect(demoPage.searchBoxContainer).toBeVisible()
-                await demoPage.searchInput.fill("iphone 15")
+                await demoPage.searchInput.fill("Lorem ipsum")
                 await page.keyboard.press('Enter')
-                await expect(page).toHaveURL("arama?q=iphone%2015")
+                await expect(page).toHaveURL("arama?q=Lorem%20ipsum")
                 await expect(demoPage.searchDetailCardContentFirst).toBeVisible()
                 await demoPage.searchDetailCardContentFirst.click()
                 const response = await page.request.get(page.url());
@@ -65,7 +64,7 @@ export const DemoWeb = {
             }
         },
         mainCategoryStatus: {
-            notes: "Cimri ana kategori status kontrol",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@web",
             run: async ({ page }) => {
                 let i: number = 0;
@@ -77,7 +76,7 @@ export const DemoWeb = {
           }
         },
         subCategoryElectronicStatus: {
-            notes: "Cimri alt kategori status kontrol",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@web",
             run: async ({ page }) => {
                 let i: number = 0;
@@ -89,7 +88,7 @@ export const DemoWeb = {
           }
         },
         bottomCategoryElectronicStatus: {
-            notes: "Cimri dip kategori status kontrol",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@web",
             run: async ({ page }) => {
                 let i: number = 0;
@@ -101,7 +100,7 @@ export const DemoWeb = {
           }
         },
         lowestPriceStatus: {
-            notes: "Dip kategoride en düşük fiyat listelenmesi status kontrol",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@web",
             run: async ({ page }) => {
                 let i: number = 0;
@@ -113,7 +112,7 @@ export const DemoWeb = {
           }
         },
         highestPriceStatus: {
-            notes: "Dip kategoride en yüksek fiyat listelenmesi status kontrol",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@mobile, @web",
             run: async ({ page }) => {
                 let i: number = 0;
@@ -125,7 +124,7 @@ export const DemoWeb = {
           }
         },
         discountedPricesStatus: {
-            notes: "Dip kategoride fiyatı düşenler listelenmesi status kontrol",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@mobile, @web",
             run: async ({ page }) => {
                 let i: number = 0;
@@ -137,7 +136,7 @@ export const DemoWeb = {
           }
         },
         newProductsStatus: {
-            notes: "Dip kategoride en yeni ürünler listelenmesi status kontrol",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@web",
             run: async ({ page }) => {
                 let i: number = 0;
@@ -149,52 +148,52 @@ export const DemoWeb = {
           }
         },
         priceDropsStatus: {
-            notes: "Fiyatı düşünler sayfasında, en düşük, yüksek fiyat ve fiyayı düşen , en yeni ürünler status ve title kontrol",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@web",
             run: async ({ page }) => {
                 await page.goto("")
                 await demoPage.saleDiscountIcon.click()
                 let response = await page.request.get(page.url());
                 await expect(response).toBeOK()
-                await expect(page).toHaveTitle("İndirimli Ürünler ve Günün İndirimleri")
+                await expect(page).toHaveTitle("Lorem ipsum dolor sit amet")
                 await page.goto("indirimli-urunler?sort=price%2Casc")
                 response = await page.request.get(page.url());
                 await expect(response).toBeOK()
-                await expect(page).toHaveTitle("İndirimli Ürünler ve Günün İndirimleri")
+                await expect(page).toHaveTitle("Lorem ipsum dolor sit amet")
                 await page.goto("indirimli-urunler?sort=price%2Cdesc")
                 response = await page.request.get(page.url());
                 await expect(response).toBeOK()
-                await expect(page).toHaveTitle("İndirimli Ürünler ve Günün İndirimleri")
+                await expect(page).toHaveTitle("Lorem ipsum dolor sit amet")
                 await page.goto("indirimli-urunler?sort=discount%2Cdesc")
                 response = await page.request.get(page.url());
                 await expect(response).toBeOK()
-                await expect(page).toHaveTitle("İndirimli Ürünler ve Günün İndirimleri")
+                await expect(page).toHaveTitle("Lorem ipsum dolor sit amet")
                 await page.goto("indirimli-urunler?sort=new%2Cdesc")
                 response = await page.request.get(page.url());
                 await expect(response).toBeOK()
-                await expect(page).toHaveTitle("İndirimli Ürünler ve Günün İndirimleri")
+                await expect(page).toHaveTitle("Lorem ipsum dolor sit amet")
           }
         },
         brochuresStatus: {
-            notes: "Broşürler sayfası ve a101 sayfasında status ve title kontrolü",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@web",
             run: async ({ page }) => {
                 await page.goto("")
                 await demoPage.brochureIcon.click()
                 let response = await page.request.get(page.url());
                 await expect(response).toBeOK()
-                await expect(page).toHaveTitle("Güncel Broşürler ve İndirim Katalogları")
+                await expect(page).toHaveTitle("Lorem ipsum dolor sit amet")
                 await demoPage.a101brochureIcon.click()
                 response = await page.request.get(page.url());
                 await expect(response).toBeOK()
-                await expect(page).toHaveTitle("A101 Aktüel Kataloğu ve A101 İndirim Broşürü")
+                await expect(page).toHaveTitle("Lorem ipsum dolor sit amet")
                 await demoPage.a101brochureFirst.click()
                 response = await page.request.get(page.url());
                 await expect(response).toBeOK()
           }
         },
         brochuresMobileStatus: {
-            notes: "Mobilde Broşürler sayfası ve a101 sayfasında status ve title kontrolü",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "",
             run: async ({ page }) => {
                 await page.goto("")
@@ -202,18 +201,18 @@ export const DemoWeb = {
                 await demoPage.brochureMobileSeeAll.click()
                 let response = await page.request.get(page.url());
                 await expect(response).toBeOK()
-                await expect(page).toHaveTitle("Güncel Broşürler ve İndirim Katalogları")
+                await expect(page).toHaveTitle("Lorem ipsum dolor sit amet")
                 await demoPage.a101brochureIcon.click()
                 response = await page.request.get(page.url());
                 await expect(response).toBeOK()
-                await expect(page).toHaveTitle("A101 Aktüel Kataloğu ve A101 İndirim Broşürü")
+                await expect(page).toHaveTitle("Lorem ipsum dolor sit amet")
                 await demoPage.a101brochureFirstMobile.click()
                 response = await page.request.get(page.url());
                 await expect(response).toBeOK()
           }
         },
         loginUser: {
-            notes: "Kullanıcı giriş yaptıktan sonra status ve title kontrolleri",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@web",
             skip:true,
             run: async ({ page }) => {
@@ -224,19 +223,19 @@ export const DemoWeb = {
                 await demoPage.signInLnk.click()
                 let response = await page.request.get(page.url());
                 await expect(response).toBeOK()
-                await expect(page).toHaveTitle("Üye Girişi")
-                await demoPage.emailInput.fill(emailAndPass.email)
-                await demoPage.passwordInput.fill(emailAndPass.pass)
+                await expect(page).toHaveTitle("Lorem")
+                await demoPage.emailInput.fill("Lorem ipsum")
+                await demoPage.passwordInput.fill("Lorem ipsum")
                 await expect(demoPage.signInBtn).toBeVisible()
                 await demoPage.signInBtn.click()
-                await expect(page).toHaveURL(/giris-basarili/)
+                await expect(page).toHaveURL(/Lorem-ipsum/)
                 response = await page.request.get(page.url());
                 await expect(response).toBeOK()
-                await expect(page).toHaveTitle("Giriş Başarılı")
+                await expect(page).toHaveTitle("Lorem ipsum dolor sit amet")
           }
         },
         loginUserMobile: {
-            notes: "Kullanıcı giriş yaptıktan sonra status ve title kontrolleri",
+            notes: "Lorem ipsum dolor sit amet",
             tag: "@mobile",
             skip:true,
             run: async ({ page }) => {
@@ -248,15 +247,15 @@ export const DemoWeb = {
                 await demoPage.loginBtnMobile.click()
                 let response = await page.request.get(page.url());
                 await expect(response).toBeOK()
-                await expect(page).toHaveTitle("Üye Girişi")
-                await demoPage.emailInput.fill(emailAndPass.email)
-                await demoPage.passwordInput.fill(emailAndPass.pass)
+                await expect(page).toHaveTitle("Lorem ipsum dolor sit amet")
+                await demoPage.emailInput.fill("Lorem ipsum")
+                await demoPage.passwordInput.fill("Lorem ipsum")
                 await expect(demoPage.signInBtn).toBeVisible()
                 await demoPage.signInBtn.click()
-                await expect(page).toHaveURL(/giris-basarili/)
+                await expect(page).toHaveURL(/Lorem-ipsum/)
                 response = await page.request.get(page.url());
                 await expect(response).toBeOK()
-                await expect(page).toHaveTitle("Giriş Başarılı")
+                await expect(page).toHaveTitle("Lorem ipsum dolor sit amet")
           }
         },       
     }
