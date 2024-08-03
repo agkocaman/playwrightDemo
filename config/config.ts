@@ -5,17 +5,18 @@ if (!env) {
 
   export const configEnv = {
     ...((env === '1') && {
-        baseURL: 'https://www.cimri.com/'
+        baseURL: 'https://www.xxx1.com/'
       }),
       ...((env === '2') && {
-        baseURL: 'https://pilot.cimri.com/'
+        baseURL: 'https://pilot.xxx2.com/'
       }),
 
   }
 
-  export const mainCategories = ["elektronik","ev-yasam-ofis-kirtasiye","anne-bebek-oyuncak","saat-moda-taki","kitap-muzik-hobi","spor-outdoor","saglik-bakim-kozmetik","oto-bahce-yapi-market","pet"] 
-  export const subCategoriesElectronic = ["beyaz-esya-mutfak","cep-telefonu","bilgisayar-yazilimlar","isitma-sogutma","goruntu-sistemleri","kisisel-bakim-gerecleri","fotograf-kamera","oyun-konsollari","giyilebilir-teknoloji-cihazlari"] 
-  export const bottomCategoriesBeyazEsya = ["camasir-makineleri","buzdolaplari","camasir-kurutma-makineleri","bulasik-makineleri","derin-dondurucular","aspiratorler","endustriyel-mutfak-ekipmanlari","mini-midi-firinlar","ankastre-setler"] 
-  export const emailAndPass = {email : "cmrgk0+cimripilot@gmail.com", pass : "x1x2x3x4"}
+export const mainCategories = ["lorem","ipsum","dolor","sit","amet","consectetur","adipiscing","elit","sed"]
+export const subCategoriesElectronic = ["do-eiusmod","tempor","incididunt","ut-labore","et-dolore","magna-aliqua","ut-enim","ad-minim","veniam"]
+export const bottomCategoriesBeyazEsya = ["quis-nostrud","exercitation","ullamco-laboris","nisi-ut-aliquip","ex-ea-commodo","consequat","duis-aute","irure-dolor","in-reprehenderit"]
+export const emailAndPass = {email : "lorem@ipsum.com", pass : "dolor1234"}
+
 
  
